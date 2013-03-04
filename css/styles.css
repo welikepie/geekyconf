@@ -148,6 +148,10 @@ nav a:hover {
   color: #222222;
   margin: 0 0 0.2em 0;
 }
+.main header h1 span {
+  color: #ccc;
+  display: none;
+}
 .main header h2 {
   font-size: 28px;
   line-height: 32px;
@@ -258,6 +262,9 @@ section p {
    Media Queries
    ========================================================================== */
 @media only screen and (min-width: 480px) {
+  h1 span {
+    display: block;
+  }
   /* ====================
       INTERMEDIATE: Menu
      ==================== */
