@@ -5,6 +5,22 @@
 @gray: #222222;
 
 
+.main-container{
+overflow:hidden; 
+ .tandc{
+       width:100%;
+       }
+}
+.footer-container{
+    footer{
+        border-top: 1px @black solid;
+    padding-top:28px;
+    padding-bottom:24px;
+    }
+    }
+.disableLink{
+    text-decoration:none;
+    }
 
 .realy-big-text {
 	font-size: 98px;
@@ -45,6 +61,7 @@
 
 
 body {
+    overflow-x:hidden;
 	padding: 0;
 	margin: 0;
    .medium-text;
@@ -94,6 +111,7 @@ textarea {
 .wrapper {
     width: 90%;
     margin: 0 5%;
+ 
 }
 
 .header-container {
@@ -161,7 +179,7 @@ nav a:hover {
    }
 }
 
-section {
+section { //mobile
    float: left;
    width: 100%;
    margin: 0 0 24px 0;
@@ -174,6 +192,28 @@ section {
    p {
       margin: 0 0 1.4em 0;
    }
+   .placeHolder{
+       width:100%;
+       margin-bottom:1.4em;
+       }
+   .sponsorImages{
+       list-style-type:none;
+       padding:0px;
+       margin:0px;
+       display:inline;
+            li{
+                float:left;
+                padding:8px;
+                display:inline-block;
+                width:50%;
+                margin-bottom:1.4em;
+                a{
+                img{
+                        width:100%;
+                        }
+                }
+            }
+       }
 }
 
 .speakers {
@@ -254,6 +294,84 @@ section {
       border: 1px @black dotted;
    }
 }
+//===========================forkit==========================================
+.forkit {
+    position: absolute;
+	right: 0;
+	top: 0;
+	width: 200px;
+	height: 150px;
+	font-family: 'Lato', sans-serif;
+	text-decoration: none;
+	.tag {
+		display: block;
+		height: 30px;
+		width: 200px;
+		color: #fff;
+		background: #aa0000;
+		text-align: center;
+		font-size: 13px;
+		font-weight: bold;
+		line-height: 30px;
+		box-shadow: 0px 0px 10px rgba( 0, 0, 0, 0.4 );
+		-webkit-transform-origin: 15px 0px;
+		   -moz-transform-origin: 15px 0px;
+		    -ms-transform-origin: 15px 0px;
+		     -o-transform-origin: 15px 0px;
+		        transform-origin: 15px 0px;
+                letter-spacing:1px;
+	}
+	 .tag:after {
+		content: '';
+		display: block;
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 196px;
+		height: 26px;
+		margin: 1px;
+		border: 1px solid rgba( 255, 255, 255, 0.4 );
+	}
+	.string {
+		display: block;
+		height: 1px;
+		width: 0px;
+		position: absolute;
+		background: rgba( 255, 255, 255, 0.7 );
+		box-shadow: 0px 0px 10px rgba( 0, 0, 0, 0.4 );
+		-webkit-transform-origin: 0px 0px;
+		   -moz-transform-origin: 0px 0px;
+		    -ms-transform-origin: 0px 0px;
+		     -o-transform-origin: 0px 0px;
+		        transform-origin: 0px 0px;
+	}
+}
+
+.forkit-curtain {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: -100%;
+	padding-top:15%;
+	background: rgba( 0, 0, 0, 0.9 );
+	overflow-y:hidden;
+    #wrapper{
+        .close-button {
+    	position: absolute;
+		width: 32px;
+		height: 32px;
+		right: 20px;
+		top: 20px;
+		cursor: pointer;
+background-color:rgba(255,255,255,0.2);
+	
+	}
+        position:absolute;
+        width:100%;
+        text-align: center;
+    }
+}
+
 
 
 /* ==========================================================================
@@ -261,13 +379,14 @@ section {
    ========================================================================== */
 
 @media only screen and (min-width: 480px) {
-
+  .main header{
         h1 {
           span {
-            display: block;
+            display: inline;
           }
         }
-
+       }
+       
 /* ====================
     INTERMEDIATE: Menu
    ==================== */
@@ -279,12 +398,23 @@ section {
       }
 
       .main-container {
+ .tandc{
+       width:65%;
+       }
    padding: 100px 16px 0 16px;
 }
 
-section {
+section { //tablet
    float: left;
    width: 50%;
+    .sponsorImages{
+            li{       
+                width:50%;
+                a{
+                    img{}
+                }
+                }
+       }
 }
 
 section:nth-of-type(1n+2) {
@@ -365,7 +495,7 @@ nav li {
 .header-container {
          height: 75px;
       }
-
+   
 /* ============
     WIDE: Menu
    ============ */
@@ -385,6 +515,18 @@ nav li {
     .main article {
         float: left;
     }
+    section{ //full width
+        .sponsorImages{
+                li{       
+                    width:31%;
+                    a{
+                    img{
+                        }
+                    }
+                }
+                }
+           }
+    
 }
 
 .speakers {
