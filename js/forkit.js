@@ -18,9 +18,9 @@
 		// Factor of page height that needs to be dragged for the
 		// curtain to fall
 		DRAG_THRESHOLD = 0.1;
-
 		VENDORS = [ 'Webkit', 'Moz', 'O', 'ms' ];
-
+		snapRight = 0;
+		
 	var dom = {
 			ribbon: null,
 			ribbonString: null,
@@ -48,7 +48,9 @@
 		openedX = TAG_WIDTH * 0.4,
 		openedY = TAG_HEIGHT,
 
+
 		velocity = 0,
+		//rotation = -45,
 		rotation = 45,
 
 		curtainTargetY = 0,
@@ -60,18 +62,15 @@
 
 		anchorA = new Point( closedX, closedY ),
 		anchorB = new Point( closedX, closedY ),
-
 		mouse = new Point();
 
 	function initialize() {
-
 		dom.ribbon = document.querySelector( '.forkit' );
 		dom.curtain = document.querySelector( '.forkit-curtain' );
 		dom.closeButton = document.querySelector( '.forkit-curtain #wrapper .close-button' );
-		console.log(dom.closeButton);
 
 		if( dom.ribbon ) {
-
+			
 			// Fetch label texts from DOM
 			closedText = dom.ribbon.getAttribute( 'data-text' ) || '';
 			detachedText = dom.ribbon.getAttribute( 'data-text-detached' ) || closedText;
@@ -79,10 +78,22 @@
 
 			// Construct the sub-elements required to represent the
 			// tag and string that it hangs from
-			dom.ribbon.innerHTML = '<span class="string"></span><span class="tag">' + closedText + '</span>';
-			dom.ribbonString = dom.ribbon.querySelector( '.string' );
-			dom.ribbonTag = dom.ribbon.querySelector( '.tag' );
+									
+			if(snapRight == 1){
+				dom.ribbon.style.right = 0;
+				dom.ribbon.innerHTML = '<span class="string"></span><span class="tag"><div class="textBit">' + closedText + '</span></span>';
+			}
+			if(snapRight == 0){
+				dom.ribbon.style.left = 0;
+				dom.ribbon.style.marginLeft = "20px";
+				dom.ribbon.id = "left";
+				dom.ribbon.innerHTML = '<span class="string"></span><span class="tag" ><div class="textBit" id="left">' + closedText + '</span></span>';
 
+			}
+						dom.ribbonString = dom.ribbon.querySelector( '.string' );
+			dom.ribbonTag = dom.ribbon.querySelector( '.tag' );
+			if(snapRight == 0){dom.ribbonTag.style.marginTop = "10px";}
+			dom.ribbonTagText = dom.ribbonTag.querySelector('.textBit');
 			// Bind events
 			dom.ribbon.addEventListener( 'click', onRibbonClick, false );
 			document.addEventListener( 'mousemove', onMouseMove, false );
@@ -151,6 +162,7 @@
 	}
 
 	function onRibbonClick( event ) {
+		console.log(event);
 		if( dom.curtain ) {
 			event.preventDefault();
 
@@ -184,24 +196,30 @@
 	function close() {
 		dragging = false;
 		state = STATE_CLOSED;
-		dom.ribbonTag.innerHTML = closedText;
+		dom.ribbonTagText.innerHTML = closedText;
 	}
 
 	function detach() {
 		state = STATE_DETACHED;
-		dom.ribbonTag.innerHTML = detachedText;
+		dom.ribbonTagText.innerHTML = detachedText;
 	}
 
 	function animate() {
 		update();
 		render();
-
+		
 		requestAnimFrame( animate );
 	}
 
 	function update() {
 		// Distance between mouse and top right corner
-		var distance = distanceBetween( mouse.x, mouse.y, window.innerWidth, 0 );
+		if(snapRight == 1){
+			var leftOrRight = window.innerWidth;		
+		}
+		else{
+			var leftOrRight = 0;	
+		}
+		var distance = distanceBetween( mouse.x, mouse.y,leftOrRight, 0 );
 
 		// If we're OPENED the curtainTargetY should ease towards page bottom
 		if( state === STATE_OPENED ) {
@@ -209,13 +227,13 @@
 			curtainTargetY = Math.min( curtainTargetY + ( window.innerHeight - curtainTargetY ) * 0.2, window.innerHeight );
 			}
 			if(curtainTargetY >= OPEN_LENGTH){
-			dom.ribbonTag.innerHTML = openedText;
+			dom.ribbonTagText.innerHTML = openedText;
 			}
 		}
 		else {
 
 			// Detach the tag when hovering close enough
-			if( distance < TAG_WIDTH * 1.5 ) {
+			if( distance < TAG_WIDTH * 1.5 && distance != 0 ) {
 				detach();
 			}
 			// Re-attach the tag if the user moved away
@@ -250,9 +268,8 @@
 			velocity += gravity;
 
 			var containerOffsetX = dom.ribbon.offsetLeft;
-
 			var offsetX = Math.max( ( ( mouse.x - containerOffsetX ) - closedX ) * 0.2, -MAX_STRAIN );
-
+		offsetX = 0;
 			anchorB.x += ( ( closedX + offsetX ) - anchorB.x ) * 0.1;
 			anchorB.y += velocity;
 
@@ -276,13 +293,19 @@
 			anchorB.y += ( openedY - anchorB.y ) * 0.2;
 
 			rotation += ( 90 - rotation ) * 0.02;
+
 		}
 		// Ease ribbon towards the CLOSED state
 		else {
 			anchorB.x += ( anchorA.x - anchorB.x ) * 0.2;
 			anchorB.y += ( anchorA.y - anchorB.y ) * 0.2;
-
-			rotation += ( 45 - rotation ) * 0.2;
+			if(snapRight == 0){
+			rotation += ( 130 - rotation ) * 0.2;
+			}
+			if(snapRight == 1){
+				rotation += ( 45 - rotation ) * 0.2;
+			}
+//			rotation += rotation * 0.2;
 		}
 	}
 
@@ -293,7 +316,7 @@
 		}
 
 		dom.ribbon.style[ prefix( 'transform' ) ] = transform( 0, curtainCurrentY, 0 );
-		dom.ribbonTag.style[ prefix( 'transform' ) ] = transform( anchorB.x, anchorB.y, rotation );
+		dom.ribbonTag.style[ prefix( 'transform' ) ] = transform(anchorB.x, anchorB.y, rotation );//rotation
 
 		var dy = anchorB.y - anchorA.y,
 			dx = anchorB.x - anchorA.x;

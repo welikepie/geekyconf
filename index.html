@@ -56,23 +56,23 @@
 						</p>
 						<ul>
 							<li>
-								<img src="img/tom.jpg" />
+								<img src="img/speakers/tom.jpg" />
 								<h3><a href="#">Tom Scott</a><em> Engineer &amp; Presenter</em></h3>
 								<h4>How to make things explode for money.</h4>
 							</li>
 							<li>
-								<img src="img/tom.jpg" />
-								<h3><a href="#">name</a><em> Dr man</em></h3>
+								<img src="img/speakers/alice.png" />
+								<h3><a href="#">Alice Bartlett</a><em> Dr man</em></h3>
 								<h4>Talk title</h4>
 							</li>
 							<li>
-								<img src="img/tom.jpg" />
-								<h3><a href="#">name</a><em> Dr man</em></h3>
+								<img src="img/speakers/lukeprofile.png" />
+								<h3><a href="#">Luke</a><em> Dr man</em></h3>
 								<h4>Talk title</h4>
 							</li>
 							<li>
-								<img src="img/tom.jpg" />
-								<h3><a href="#">name</a><em> Dr man</em></h3>
+								<img src="img/speakers/sarah.png" />
+								<h3><a href="#">Sarah</a><em> Dr man</em></h3>
 								<h4>Talk title</h4>
 							</li>
 							<li>
@@ -164,8 +164,10 @@
 			</div>
 			<!-- #main -->
 			<!-- The contents (if there's no contents the ribbon acts as a link) -->
-			<div class="forkit-curtain" >
-				
+			
+		</div>
+		<!-- .main-container -->
+		<div class="forkit-curtain" >		
 				<div id="wrapper">
 				<div class="close-button"></div>		
 					<h2>OMGOSH KITTENZ!!!1!</h2>
@@ -181,9 +183,6 @@
 			<!-- The ribbon -->
 			<a class="forkit" data-text="Event Handler" data-text-detached="Drag Me!>" data-text-opened="Click To Close!"href="https://github.com/hakimel/forkit.js"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://a248.e.akamai.net/camo.github.com/e6bef7a091f5f3138b8cd40bc3e114258dd68ddf/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67" alt="Fork me on GitHub"></a>
 		<script src="js/forkit.js"></script>
-		</div>
-		<!-- .main-container -->
-
 		<div class="footer-container">
 			<footer class="wrapper">
 				<iframe src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.geekyconf.com&amp;send=false&amp;layout=button_count&amp;width=90&amp;show_faces=true&amp;font&amp;colorscheme=light&amp;action=like&amp;height=21&amp;appId=390528784334401" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:90px; height:21px;" allowTransparency="true"></iframe>
@@ -199,7 +198,7 @@
 						}
 					}(document, "script", "twitter-wjs");
 				</script>
-				<span class="med-text"> &copy; 2013 EventHandler </span><span class="med-text"><a class = "tandcLink" href="terms.html">Terms and Conditions</a></span>
+				<span class="med-text"> &copy; 2013 EventHandler </span><span class="med-text"><a class = "disableLink" href="terms.html"><span class="medium-text">Terms and Conditions</span></a></span>
 
 			</footer>
 		</div>
@@ -207,6 +206,7 @@
 		<script src="js/main.js"></script>
 
 		<script>
+		var colour = "#ff5500";
 			var _gaq = [['_setAccount', 'UA-XXXXX-X'], ['_trackPageview']]; ( function(d, t) {
 					var g = d.createElement(t), s = d.getElementsByTagName(t)[0];
 					g.src = ('https:' == location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js';
@@ -236,7 +236,7 @@
 						},
 						'properties' : {
 							// https://github.com/mapbox/simplestyle-spec
-							'marker-color' : '#000',
+							'marker-color' : colour,
 							'marker-symbol' : 'rail-above'
 						}
 					});
@@ -248,8 +248,8 @@
 						},
 						'properties' : {
 							// https://github.com/mapbox/simplestyle-spec
-							'marker-color' : '#000',
-							'marker-symbol' : 'rail-underground'
+							'marker-color' : colour,
+							'marker-symbol' : "rail"
 						}
 					});
 				}
@@ -260,7 +260,7 @@
 						},
 						'properties' : {
 							// https://github.com/mapbox/simplestyle-spec
-							'marker-color' : '#000',
+							'marker-color' : colour,
 							'marker-symbol' : 'rail-above'
 						}
 					});
@@ -272,7 +272,7 @@
 					},
 					'properties' : {
 						// https://github.com/mapbox/simplestyle-spec
-						'marker-color' : '#000',
+						'marker-color' : colour,
 						'marker-symbol' : 'star-stroked'
 					}
 				});
@@ -282,7 +282,7 @@
 					},
 					'properties' : {
 						// https://github.com/mapbox/simplestyle-spec
-						'marker-color' : '#000',
+						'marker-color' : colour,
 						'marker-symbol' : 'beer'
 					}
 				});
