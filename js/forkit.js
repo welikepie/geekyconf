@@ -14,7 +14,7 @@
 		TAG_HEIGHT = 30,
 		TAG_WIDTH = 200,
 		MAX_STRAIN = 40,
-		OPEN_LENGTH = 400 ,
+		OPEN_LENGTH = 200 ,
 		// Factor of page height that needs to be dragged for the
 		// curtain to fall
 		DRAG_THRESHOLD = 0.1;
@@ -224,7 +224,7 @@
 		// If we're OPENED the curtainTargetY should ease towards page bottom
 		if( state === STATE_OPENED ) {
 			if(curtainTargetY < OPEN_LENGTH || OPEN_LENGTH == undefined){
-			curtainTargetY = Math.min( curtainTargetY + ( window.innerHeight - curtainTargetY ) * 0.2, window.innerHeight );
+			curtainTargetY = Math.min( curtainTargetY + ( window.innerHeight - curtainTargetY ) * 0.2, OPEN_LENGTH );
 			}
 			if(curtainTargetY >= OPEN_LENGTH){
 			dom.ribbonTagText.innerHTML = openedText;

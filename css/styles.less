@@ -160,6 +160,12 @@ nav a:hover {
     text-decoration: underline;
 }
 
+.forkit-curtain {
+        a {
+          color: @black;
+        }
+}
+
 .main {
    header {
       float: left;
@@ -296,11 +302,16 @@ section { //mobile
 
 #map {
    width: 100%;
-   height: 300px;
+   height: 200px;
    padding: 8px;
    margin: 8px 0;
    border: 1px @black dotted;
 }
+
+.sales-box {
+  display: none;
+}
+
 //===========================forkit==========================================
 .forkit {
     position: absolute;
@@ -372,9 +383,10 @@ section { //mobile
 	overflow-y:hidden;
     #wrapper{
         position: absolute;
+
         bottom: 0;
-        width:100%;
-        text-align: center;
+        width: 90%;
+        margin: 0 5%;
         padding: 0 0 24px 0;
         .close-button {
     	position: absolute;
@@ -457,6 +469,18 @@ section:nth-of-type(1n+2) {
    }
 }
 
+#map {
+   height: 300px;
+}
+
+.sales-button {
+  display: none;
+}
+
+.sales-box {
+  display: block;
+}
+
 header {
 }
 
@@ -509,6 +533,7 @@ nav li {
 /* ====================
     WIDE: CSS3 Effects
    ==================== */
+
 
 
 .header-container {
@@ -574,6 +599,14 @@ nav li {
     .wrapper {
         width: 1026px; /* 1140px - 10% for margins */
         margin: 0 auto;
+    }
+
+    .forkit-curtain {
+      #wrapper {
+        width: 1026px; /* 1140px - 10% for margins */
+        left: 50%;
+        margin: 0 0 0 -510px;
+      }
     }
 }
 

@@ -148,6 +148,9 @@ nav a:visited {
 nav a:hover {
   text-decoration: underline;
 }
+.forkit-curtain a {
+  color: #222222;
+}
 .main header {
   float: left;
   width: 100%;
@@ -292,10 +295,13 @@ section .sponsorImages li a img {
 }
 #map {
   width: 100%;
-  height: 300px;
+  height: 200px;
   padding: 8px;
   margin: 8px 0;
   border: 1px #222222 dotted;
+}
+.sales-box {
+  display: none;
 }
 .forkit {
   position: absolute;
@@ -368,8 +374,8 @@ section .sponsorImages li a img {
 .forkit-curtain #wrapper {
   position: absolute;
   bottom: 0;
-  width: 100%;
-  text-align: center;
+  width: 90%;
+  margin: 0 5%;
   padding: 0 0 24px 0;
 }
 .forkit-curtain #wrapper .close-button {
@@ -416,6 +422,15 @@ section .sponsorImages li a img {
   }
   .speakers ul li h4 {
     width: 100%;
+  }
+  #map {
+    height: 300px;
+  }
+  .sales-button {
+    display: none;
+  }
+  .sales-box {
+    display: block;
   }
   nav {
     float: left;
@@ -468,6 +483,13 @@ section .sponsorImages li a img {
     /* 1140px - 10% for margins */
   
     margin: 0 auto;
+  }
+  .forkit-curtain #wrapper {
+    width: 1026px;
+    /* 1140px - 10% for margins */
+  
+    left: 50%;
+    margin: 0 0 0 -510px;
   }
 }
 /* ==========================================================================
