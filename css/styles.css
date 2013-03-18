@@ -188,6 +188,12 @@ section {
   width: 100%;
   margin: 0 0 24px 0;
 }
+section .cont-image {
+  width: 100%;
+  padding: 8px;
+  margin: 8px 0;
+  border: 1px #222222 dotted;
+}
 section time {
   display: block;
   float: left;
@@ -219,10 +225,6 @@ section a,
 section a:hover,
 section a:visited {
   color: #222222;
-}
-section .placeHolder {
-  width: 100%;
-  margin-bottom: 1.4em;
 }
 section .sponsorImages {
   list-style-type: none;
