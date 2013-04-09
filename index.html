@@ -13,7 +13,9 @@
 		<link rel='stylesheet' href='http://api.tiles.mapbox.com/mapbox.js/v0.6.7/mapbox.css'>
 
 		<script src="js/vendor/modernizr-2.6.2.min.js"></script>
-		<script src="http://api.tiles.mapbox.com/mapbox.js/v0.6.7/mapbox.js"></script>
+	<script type="text/javascript"
+      src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDwdr9BnnJZolfWix-5cnclc3kuJ3gWTe4&sensor=false">
+    </script>
 
 	</head>
 	<body>
@@ -162,7 +164,7 @@
 						<div id="map">
                             
                         </div>
-                        <p class="address">29-32 The Oval, London, E2 9DT</p>
+                         <p class="address">29-32 The Oval, London, E2 9DT</p>
 
 					</section>
 					<section>
@@ -247,7 +249,7 @@
 		</div>
 
 		<script src="js/main.js"></script>
-
+ 
 		<script>
 		var colour = "#ff5500";
 			var _gaq = [
@@ -260,85 +262,70 @@
 					s.parentNode.insertBefore(g, s)
 				}(document, 'script'));
 
-			mapbox.load('examples.map-vyofok3q', function(o) {
 				//locations from google maps are the 'wrong' way around for mapbox, so re-format to new Array(railLocations[i][1],railLocations[i][0]);
-				var railLocations = [[51.531980, -0.057270], //Cambridge Heath
-				[51.541160, -0.057750], //London Fields
-				[51.523920, -0.059560]//Bethnal Green
+				var railLocations = [[51.530980, -0.057270], //Cambridge Heath
+				[51.540160, -0.057750], //London Fields
+				[51.522920, -0.059560]//Bethnal Green
 				];
 				//Hackney Central, Dalston Junction, Dalston Kingsland, Haggerston, Hoxton, Homerton
-				var overGround = [[51.547117, -0.056880], [51.548230, -0.075860], [51.546120, -0.075130], [51.538710, -0.075660], [51.531520, -0.075680], [51.547131, -0.042880]];
-				var underGround = [[51.527220, -0.055480]];
+				var overGround = [[51.546117, -0.056880], [51.547230, -0.075860], [51.545120, -0.075130], [51.537710, -0.075660], [51.530520, -0.075680], [51.546131, -0.042880]];
+				var underGround = [[51.526220, -0.055480]];
 				//Bethnal Green
-
-				var map = mapbox.map('map');
-				map.addLayer(o.layer);
-				layer = mapbox.markers.layer();
-				mapbox.markers.interaction(layer);
-				map.addLayer(layer);
-				for (var i = 0; i < overGround.length; i++) {
-					layer.add_feature({
-						'geometry' : {
-							'coordinates' : [overGround[i][1], overGround[i][0]]
-						},
-						'properties' : {
-							// https://github.com/mapbox/simplestyle-spec
-							'marker-color' : colour,
-							'marker-symbol' : 'rail-above'
-						}
-					});
-				}
-				for (var i = 0; i < underGround.length; i++) {
-					layer.add_feature({
-						'geometry' : {
-							'coordinates' : [underGround[i][1], underGround[i][0]]
-						},
-						'properties' : {
-							// https://github.com/mapbox/simplestyle-spec
-							'marker-color' : colour,
-							'marker-symbol' : "rail"
-						}
-					});
-				}
-				for (var i = 0; i < railLocations.length; i++) {
-					layer.add_feature({
-						'geometry' : {
-							'coordinates' : [railLocations[i][1], railLocations[i][0]]
-						},
-						'properties' : {
-							// https://github.com/mapbox/simplestyle-spec
-							'marker-color' : colour,
-							'marker-symbol' : 'rail-above'
-						}
-					});
-				}
-
-				layer.add_feature({
-					'geometry' : {
-						'coordinates' : [-0.05873, 51.533389]
-					},
-					'properties' : {
-						// https://github.com/mapbox/simplestyle-spec
-						'marker-color' : colour,
-						'marker-symbol' : 'star-stroked'
-					}
-				});
-				layer.add_feature({
-					'geometry' : {
-						'coordinates' : [-0.058408, 51.538448]
-					},
-					'properties' : {
-						// https://github.com/mapbox/simplestyle-spec
-						'marker-color' : colour,
-						'marker-symbol' : 'beer'
-					}
-				});
-
-				map.centerzoom({
-					'lon' : -0.057775,
-					'lat' : 51.535098
-				}, 14);
-			});
+				var eventLoc = [51.53311,-0.05888];
+				var boozeUp = [51.537568,-0.058322];
+				
+				
+  function initialize() {
+        var mapOptions = {
+          center: new google.maps.LatLng(eventLoc[0]+0.0013,eventLoc[1]),
+          zoom: 14,
+          mapTypeId: google.maps.MapTypeId.ROADMAP,
+          disableDefaultUI: true
+        };
+        var map = new google.maps.Map(document.getElementById("map"),
+            mapOptions);
+  
+  new google.maps.Marker({
+      position:   new google.maps.LatLng(boozeUp[0],boozeUp[1]),
+      map: map,
+      icon: "img/pins/beer.png"
+  });
+      
+  new google.maps.Marker({
+      position:   new google.maps.LatLng(eventLoc[0],eventLoc[1]),
+      map: map,
+      icon: "img/pins/star.png"
+  });
+      
+ for(var i = 0; i < underGround.length; i++){  
+     new google.maps.Marker({
+      position:   new google.maps.LatLng(underGround[i][0],underGround[i][1]),
+      map: map,
+      icon: "img/pins/rail.png"
+  });
+ }
+      
+ for(var i = 0; i < railLocations.length; i++){  
+     new google.maps.Marker({
+      position:   new google.maps.LatLng(railLocations[i][0],railLocations[i][1]),
+      map: map,
+      icon: "img/pins/rail.png"
+  });
+ }
+  for(var i = 0; i < overGround.length; i++){  
+     new google.maps.Marker({
+      position:   new google.maps.LatLng(overGround[i][0],overGround[i][1]),
+      map: map,
+      icon: "img/pins/rail.png"
+  });
+ }
+      
+}
+      
+      
+      
+      google.maps.event.addDomListener(window, 'load', initialize);
+				
 		</script>
 
 		<link href='http://fonts.googleapis.com/css?family=Vollkorn:400italic,700italic,400,700' rel='stylesheet' type='text/css'>
