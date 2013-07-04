@@ -167,8 +167,9 @@ nav a:hover {
   font-family: 'Helvetica Neue', Arial, 'Liberation Sans', FreeSans, sans-serif;
   font-weight: bold;
   color: #222222;
-  margin: 0 0 0.2em 0;
-  height: 100px;
+  padding-bottom: 10px;
+  margin: 0 0 8px 0;
+  height: 110px;
 }
 .main header h1 > span {
   vertical-align: top;
@@ -216,10 +217,10 @@ nav a:hover {
     -moz-transform-style: preserve-3d;
     -ms-transform-style: preserve-3d;
     transform-style: preserve-3d;
-    -webkit-transition: -webkit-transform 3000ms;
-    -moz-transition: -moz-transform 3000ms;
-    -ms-transition: -ms-transform 3000ms;
-    transition: transform 3000ms;
+    -webkit-transition: -webkit-transform 2400ms;
+    -moz-transition: -moz-transform 2400ms;
+    -ms-transition: -ms-transform 2400ms;
+    transition: transform 2400ms;
   }
   html.csstransforms3d.csstransitions .main header h1 #rotator .subtext-inner-wrapper .child {
     display: block;
@@ -651,7 +652,7 @@ section .sponsorImages li a img {
     width: 65%;
   }
   .main-container header h1 {
-    height: 200px;
+    height: 210px;
     padding-top: 100px;
   }
   section {
