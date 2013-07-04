@@ -177,41 +177,105 @@ nav a:hover {
         text-decoration: none;
       }
       h1 {
-         .realy-big-text;
-         margin: 0 0 0.2em 0;
+        @prefix-width: 294px;
+        @spinner-width: 510px;
+        @spinner-height: 100px;
 
-         .subtext {
+        .realy-big-text;
+        margin: 0 0 0.2em 0;
+        height: @spinner-height;
+
+        > span { vertical-align: top; }
+        .prefix {
+          display: inline-block;
+          width: @prefix-width;
+          height: @spinner-height;
+        }
+        #rotator .subtext-inner-wrapper .child {
+          display: none;
           color: @gray;
-          
-          width: 510px;
-          height: 140px;
-          position: relative;
-          perspective: 1000px;
+          &.fallback { display: inline; }
+        }
 
+        @media screen and (min-width: (980px)) {
+          @spinner-count: 16;
+          @z-offset: round((@spinner-height / 2) / tan(pi() / (@spinner-count * 2)));
+          overflow: hidden;
+
+          html.csstransforms3d.csstransitions & #rotator {
+            display: inline-block;
+            width: @spinner-width;
+            height: @spinner-height;
+            position: relative;
+
+            -webkit-perspective: 800px;
+            -moz-perspective: 800px;
+            -ms-perspective: 800px;
+            perspective: 800px;
+
+            -webkit-perspective-origin: 50% 50%;
+            -moz-perspective-origin: 50% 50%;
+            -ms-perspective-origin: 50% 50%;
+            perspective-origin: 50% 50%;
 
             .subtext-inner-wrapper {
-              width: 100%;
-              height: 100%;
+              display: block;
               position: absolute;
+              width: @spinner-width;
+              height: @spinner-height;
+
+              -webkit-transform: translateZ(@z-offset * -1);
+              -moz-transform: translateZ(@z-offset * -1);
+              -ms-transform: translateZ(@z-offset * -1);
+              transform: translateZ(@z-offset * -1);
+
+              -webkit-transform-style: preserve-3d;
+              -moz-transform-style: preserve-3d;
+              -ms-transform-style: preserve-3d;
               transform-style: preserve-3d;
 
-                .child {
-                    display: block;
-                    position: absolute;
-                    width: 486px;
-                    height: 116px;
-                    left: 10px;
-                    top: 10px;
-                    border: 2px solid black;
+              -webkit-transition: -webkit-transform 3000ms;
+              -moz-transition: -moz-transform 3000ms;
+              -ms-transition: -ms-transform 3000ms;
+              transition: transform 3000ms;
+
+              .child {
+                display: block;
+                position: absolute;
+                width: @spinner-width;
+                height: @spinner-height;
+
+                .element-pos (@index) when (@index > 0) {
+                  &:nth-child(@{index}) {
+                    @deg: ((@index - 1) / (@spinner-count * 2)) * 360deg;
+                    -webkit-transform: rotateX(@deg) translateZ(@z-offset);
+                    -moz-transform: rotateX(@deg) translateZ(@z-offset);
+                    -ms-transform: rotateX(@deg) translateZ(@z-offset);
+                    transform: rotateX(@deg) translateZ(@z-offset);
+
+                    -webkit-backface-visibility: hidden;
+                    -moz-backface-visibility: hidden;
+                    -ms-backface-visibility: hidden;
+                    backface-visibility: hidden;
+                  }
+                  .element-pos(@index - 1);
                 }
+                .element-pos (0) {}
+                .element-pos (@spinner-count);
+              }
             }
 
-         }
+            &.rotated .subtext-inner-wrapper {
+              @deg: ((@spinner-count - 1) / (@spinner-count * 2)) * 360deg;
+              -webkit-transform: translateZ(@z-offset * -1) rotateX(@deg * -1);
+              -moz-transform: translateZ(@z-offset * -1) rotateX(@deg * -1);
+              -ms-transform: translateZ(@z-offset * -1) rotateX(@deg * -1);
+              transform: translateZ(@z-offset * -1) rotateX(@deg * -1);
+            }
+          }
+        }
       }
-      .subtext-inner-wrapper .child:nth-child(1) { transform: rotateY(   0deg ); }
-      .subtext-inner-wrapper .child:nth-child(2) { transform: rotateY(  40deg ); }
-      .subtext-inner-wrapper .child:nth-child(3) { transform: rotateY(  80deg ); }
-      .subtext-inner-wrapper .child:nth-child(4) { transform: rotateY( 120deg ); }
+
       h2 {
          .large-text;   
          margin: 0 0 1em 0;
@@ -486,7 +550,11 @@ section { //mobile
  .tandc{
        width:65%;
        }
-   padding: 100px 16px 0 16px;
+   padding: 0 16px 0 16px;
+   header h1 {
+    height: 200px;
+    padding-top: 100px;
+  }
 }
 
 section { //tablet
