@@ -183,9 +183,6 @@ nav a:hover {
   display: none;
   color: #cccccc;
 }
-.main header h1 #rotator .subtext-inner-wrapper .child.fallback {
-  display: inline;
-}
 @media screen and (min-width: 980px) {
   .main header h1 {
     overflow: hidden;
