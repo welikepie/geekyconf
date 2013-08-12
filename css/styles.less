@@ -420,9 +420,7 @@ section { //mobile
    }
 }
 
-.tickets {
-  clear: left;
-}
+
 
 #map {
    width: 100%;
@@ -580,6 +578,11 @@ section { //tablet
    clear: right;
 }*/
 
+section:nth-of-type(odd) {
+  clear: left;
+   
+}
+
 section:nth-of-type(even) {
    padding-left: 32px;
    
@@ -606,13 +609,7 @@ section:nth-of-type(even) {
    height: 300px;
 }
 
-.sales-button {
-  display: none;
-}
 
-.sales-box {
-  display: block;
-}
 
 header {
 }
@@ -667,7 +664,13 @@ nav li {
     WIDE: CSS3 Effects
    ==================== */
 
+.sales-button {
+  display: none;
+}
 
+.sales-box {
+  display: block;
+}
 
 .header-container {
          height: 75px;
